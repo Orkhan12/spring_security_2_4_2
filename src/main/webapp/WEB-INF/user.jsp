@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>User Details</h1>
+<h1>User information</h1>
 
 <table border="1">
     <tbody>
@@ -17,7 +17,8 @@
         <td>Role</td>
         <td>Password</td>
     </tr>
-    <tr>
+    <tr th:each="user, state : ${user}"
+        class="row" th:classappend="${state.odd} ? 'odd-row' : 'even-row'">
         <td th:text="${user.id}">ID</td>
         <td th:text="${user.name}"> Name</td>
         <td th:text="${user.lastName}"> LastName</td>

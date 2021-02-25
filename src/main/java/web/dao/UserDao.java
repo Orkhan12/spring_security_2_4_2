@@ -1,17 +1,26 @@
 package web.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import web.model.Role;
 import web.model.User;
 
 import java.util.List;
 
-public interface UserDao {
-    public void addUser(User user);
+public interface UserDao  {
+    void addUser(User user);
 
-    public void updateUser(User user);
+    void updateUser(User user);
 
-    public void removeUser(int id);
+    void removeUser(int id);
 
-    public User getUserById(int id);
+    User getUserById(int id);
 
-    public List<User> listUser();
+    List<User> listUser();
+
+    List<Role> listRole();
+
+    Role getRoleById(Long id);
+
+    User getUserByUsername(String UserName);
 }

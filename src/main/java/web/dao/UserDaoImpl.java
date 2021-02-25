@@ -1,6 +1,7 @@
 package web.dao;
 
 import org.springframework.stereotype.Repository;
+import web.model.Role;
 import web.model.User;
 
 import javax.persistence.EntityManager;
@@ -35,5 +36,26 @@ public class UserDaoImpl implements UserDao {
         List<User> user = em.createQuery("from User")
                 .getResultList();
         return user;
+    }
+
+    @Override
+    public List<Role> listRole() {
+        List<Role> roles = em.createQuery("from Role").getResultList();
+        return roles;
+    }
+
+    @Override
+    public User getUserByUsername(String UserName) {
+        User user = em.createQuery(
+                "SELECT u from User u WHERE u.name = :username", User.class).
+                setParameter("username", UserName).getSingleResult();
+        return user;
+    }
+
+    @Override
+    public Role getRoleById(Long id) {
+        Role role = em.find(Role.class, new Long(id));
+        em.detach(role);
+        return role;
     }
 }
